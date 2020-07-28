@@ -49,7 +49,7 @@ import json
 
 engine = pyttsx3.init('sapi5')
 
-weather_key = "b1abc297c8af9f3533cdaf1114ac30bf"
+weather_key = "your_api_key"
 
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
@@ -59,7 +59,7 @@ client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['python']
 collection = db['workList']
 
-wolframalpha_client = wolframalpha.Client('V7EJTH-34K2J7EGRU')
+wolframalpha_client = wolframalpha.Client('your_api_key')
 
 class Assistant:
     '''
@@ -326,20 +326,20 @@ class Assistant:
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.ehlo()
             server.starttls()
-            server.login('aabisht2006@gmail.com', '1234ayush')
+            server.login('your_email', 'your_password')
             self.speak(f'{self.tell_user_gender()} Please Speak Subject')
             sub = self.takeCommand()
             self.speak(f'{self.tell_user_gender()} Please Speak Message')
             msg = self.takeCommand()
             self.speak(f'Whom to send {self.tell_user_gender()}')
-            recivers_list = [['self', 'aabisht2006@gmail.com'], ['mom', 'rosy.bisht80@gmail.com'], ['brother', 'tushar.bisht2006@gmail.com'], ['dad', 'tushar.4972@kvsrodelhi.in']]         
+            recivers_list = [['self', 'your_email'], ['mom', 'your_mom_email'], ['brother', 'brother_email'], ['dad', 'dad_email']]         
             reciver_email = None
             reciver_command= self.takeCommand().lower()
             
             for reciver in recivers_list:
                 if reciver[0] in reciver_command:
                     reciver_email = reciver[1]
-                    server.sendmail('aabisht2006@gmail.com', reciver_email, f'Subject: {sub}\n\n{msg}')
+                    server.sendmail('your_email', reciver_email, f'Subject: {sub}\n\n{msg}')
                     self.speak(f'Your Message sent successfully {self.tell_user_gender()}')
                     server.close()
                     break
